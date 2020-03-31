@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div(id='songinfo') iTunes is #{state} : #{artist} - #{song}
+  button(type='button' id='prevButton') Prev
+  button(type='button' id='playpauseButton') Play/Pause
+  button(type='button' id='nextButton') Next
+  script(src='javascripts/client.js')
+
+  
