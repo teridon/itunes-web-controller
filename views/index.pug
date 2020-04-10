@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  div(id='songinfo') iTunes is #{state} : #{artist} - #{song}
-  button(type='button' id='prevButton') Prev
-  button(type='button' id='playpauseButton') Play/Pause
-  button(type='button' id='nextButton') Next
+  button(type='button' class='btn btn-dark' id='prevButton') Prev
+  button(type='button' class='btn btn-dark' id='playpauseButton' style="width: 70px") #{playpausetext}
+  button(type='button' class='btn btn-dark' id='nextButton') Next
+  div(id='songinfo' class='alert alert-success') iTunes is  #{state} : 
+    p #{artist}<br>#{song}
   script(src='javascripts/client.js')
 
   

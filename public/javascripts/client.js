@@ -15,7 +15,9 @@ function processRequest(button, e) {
           var resp = oReq.responseText
           //console.log('response text: ' + resp);
           var obj = JSON.parse(resp);
-          document.getElementById('songinfo').innerHTML = "iTunes is " + obj.state + ": " + obj.artist + " - " + obj.song;
+          document.getElementById('songinfo').innerHTML = "iTunes is " + obj.state + ": <p>" + obj.artist + "<br>" + obj.song;
+          //console.log('button text:' + obj.playpausetext)
+          document.getElementById('playpauseButton').innerHTML = obj.playpausetext;
         } else {
           //console.log('errors in response')
         }

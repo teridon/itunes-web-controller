@@ -5,7 +5,21 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   var track = global.iTunes.getCurrentTrack();
   var iTunesState = global.iTunes.getPlayerState();
-    res.render('index', { title: 'iTunes Control', song: track.name, artist: track.artist, state: iTunesState });
+  var playpausetext = "NULL"
+  if ( iTunesState.includes("playing") == true ) {
+    playpausetext = "Pause"
+  } else {
+    playpausetext = "Play"
+  }
+  //console.log("playpausetext: " + playpausetext)
+  res.render(
+    'index', { 
+      title: 'iTunes Control', 
+      song: track.name, 
+      artist: track.artist, 
+      state: iTunesState, 
+      playpausetext: playpausetext 
+    });
 });
 
 module.exports = router;

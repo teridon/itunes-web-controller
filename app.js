@@ -28,7 +28,18 @@ app.use('/status', statusRouter);
 function updateTrackInfo(res) {
   var track = global.iTunes.getCurrentTrack();
   var iTunesState = global.iTunes.getPlayerState();
-  res.json({"artist": track.artist, "song": track.name, "state": iTunesState} )
+  var playpausetext = "NULL"
+  if ( iTunesState.includes("playing") == true ) {
+    playpausetext = "Pause"
+  } else {
+    playpausetext = "Play"
+  }
+  res.json({
+    "artist": track.artist, 
+    "song": track.name, 
+    "state": iTunesState, 
+    "playpausetext": playpausetext
+  } )
 }
 
 app.get('/pause', function (req, res) {
