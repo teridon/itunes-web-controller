@@ -1,8 +1,9 @@
-body, button {
-  padding: 5px;
-  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+.buttons {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
-a {
-  color: #00B7FF;
+.buttons button {
+  margin-left: 2px;
+  margin-right: 2px;
 }
