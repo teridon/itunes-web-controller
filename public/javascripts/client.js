@@ -1,24 +1,36 @@
 //console.log('Client-side code running');
 
-const songinfo        = document.getElementById('songinfo')
-const playpauseButton = document.getElementById('playpauseButton');
-const nextbutton      = document.getElementById('prevButton');
-const prevbutton      = document.getElementById('nextButton');
+const songinfo    = document.getElementById('songinfo')
+const playButton  = document.getElementById('playButton');
+const pauseButton = document.getElementById('pauseButton')
+const nextbutton  = document.getElementById('prevButton');
+const prevbutton  = document.getElementById('nextButton');
 
 function addListeners(oReq) {
   oReq.addEventListener('load', function () {
     var resp = oReq.responseText;
     var obj = JSON.parse(resp);
     songinfo.innerHTML = "iTunes is " + obj.state + ": <br>" + obj.artist + "<br>" + obj.song;
-    //console.log('button text:' + obj.playpausetext)
-    playpauseButton.innerHTML = obj.playpausetext;
-    //updatePlaypauseButton(obj.playpausetext);
+    updatePlaypauseButton(obj.playpausetext);
   });
   oReq.addEventListener('timeout', function () {});
   oReq.addEventListener('error', function () {});
   oReq.addEventListener('abort', function () {});
 }
 
+function updatePlaypauseButton (nextPlayState) {
+  if ( nextPlayState == 'Pause') {
+    // Hide the Play Button, show the Pause button
+    playButton.classList.add('d-none')
+    pauseButton.classList.remove('d-none')
+  } else if ( nextPlayState == 'Play') {
+    // show the Play Button, Hide the Pause button
+    playButton.classList.remove('d-none')
+    pauseButton.classList.add('d-none')
+  } else {
+    console.log("unexpected nextPlayState: " + nextPlayState)
+  }
+}
 
 function processRequest(button, e) {
     //console.log('processing request: ' + button);
@@ -40,7 +52,13 @@ prevbutton.addEventListener('click', function(e) {
 });
 
 
-playpauseButton.addEventListener('click', function(e) {
+playButton.addEventListener('click', function(e) {
     processRequest ('playpause');
 });
 
+pauseButton.addEventListener('click', function(e) {
+  processRequest ('playpause');
+});
+
+// immediately update the play/pause button on start
+processRequest('status');

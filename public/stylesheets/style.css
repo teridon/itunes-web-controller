@@ -7,3 +7,33 @@
   margin-left: 2px;
   margin-right: 2px;
 }
+
+.next, .prev, .Play, .Pause {
+  position: absolute;
+}
+
+.prev {
+  top: 4px;
+  left: 4px;
+}
+
+
+.Play {
+  top: 4px;
+  left: 50px;
+}
+
+.Pause {
+  top: 4px;
+  left: 50px;
+}
+
+.next {
+  top: 4px;
+  left: 134px;
+}
+
+.alert {
+  top: 40px;
+  left: 4px;
+}
