@@ -18,7 +18,8 @@ router.get('/', function(req, res, next) {
       song: track.name, 
       artist: track.artist, 
       state: iTunesState, 
-      playpausetext: playpausetext 
+      playpausetext: playpausetext,
+      Playlists: ["iTunes DJ","3stars+"]
     });
 });
 

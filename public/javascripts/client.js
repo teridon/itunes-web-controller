@@ -5,6 +5,7 @@ const playButton  = document.getElementById('playButton');
 const pauseButton = document.getElementById('pauseButton')
 const nextbutton  = document.getElementById('prevButton');
 const prevbutton  = document.getElementById('nextButton');
+const playlistbutton  = document.getElementById('playlistSelect');
 
 function addListeners(oReq) {
   oReq.addEventListener('load', function () {
@@ -33,10 +34,14 @@ function updatePlaypauseButton (nextPlayState) {
 }
 
 function processRequest(button, e) {
-    //console.log('processing request: ' + button);
+    console.log('processing request: ' + button);
     var oReq = new XMLHttpRequest();
     addListeners(oReq);
-    oReq.open("GET", "/" + button);
+    if ( button.match('SelectPlaylist')) {
+      oReq.open("POST", "/" + button);
+    } else {
+      oReq.open("GET", "/" + button);
+    }
     oReq.send();
 }
 
@@ -58,6 +63,10 @@ playButton.addEventListener('click', function(e) {
 
 pauseButton.addEventListener('click', function(e) {
   processRequest ('playpause');
+});
+
+playlistbutton.addEventListener('click', function(e) {
+  processRequest ('SelectPlaylist');
 });
 
 // immediately update the play/pause button on start
