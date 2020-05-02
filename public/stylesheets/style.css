@@ -8,7 +8,7 @@
   margin-right: 2px;
 }
 
-.next, .prev, .Play, .Pause {
+.next, .prev, .Play, .Pause, .selectPlaylist, .playlistDropdown {
   position: absolute;
 }
 
@@ -34,6 +34,23 @@
 }
 
 .alert {
-  top: 40px;
+  top: 100px;
   left: 4px;
 }
+
+.selectPlaylist {
+  top: 50px;
+  left: 0px;
+}
+
+.playlistDropdown {
+  top: 40px;
+  left: 110px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 8px 2px;
+  margin: 8px 0;
+}
+

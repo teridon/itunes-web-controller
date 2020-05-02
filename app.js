@@ -5,6 +5,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var myEmitter = global.iTunes.emitter
+myEmitter.on('playing', function(a,track) {
+  /* console.log('app.js: a playing event occurred!');
+  console.log('app.js: a: ', a);
+  console.log('app.js: track: ', track);
+  console.log('app.js: this: ', this);
+  console.log('app.js: myemitter: ', this === myEmitter); */
+  if ( track.playerState.includes("playing") == true ) {
+    playpausetext = "Pause"
+  } else {
+    playpausetext = "Play"
+  }
+  /* console.log({
+    "artist": track.artist, 
+    "song": track.name, 
+    "state": track.playerState, 
+    "playpausetext": playpausetext
+  } ); */
+});
 
 var indexRouter = require('./routes/index');
 var statusRouter = require('./routes/status');
@@ -27,6 +46,7 @@ app.use('/status', statusRouter);
 
 function updateTrackInfo(res) {
   var track = global.iTunes.getCurrentTrack();
+  console.log("updateTrackInfo:38: ", track)
   var iTunesState = global.iTunes.getPlayerState();
   var playpausetext = "NULL"
   if ( iTunesState.includes("playing") == true ) {
@@ -61,6 +81,13 @@ app.get('/playpause', function (req, res) {
   var iTunes_result = global.iTunes.playpause()
   updateTrackInfo(res);
 })
+
+app.post('/SelectPlaylist', function (req, res) {
+  console.log('pulldown is: ', req.body.playlist);
+  var playlist = global.iTunes.PlayPlaylist(req.body.playlist);
+  updateTrackInfo(res);
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
