@@ -5,7 +5,8 @@ const playButton  = document.getElementById('playButton');
 const pauseButton = document.getElementById('pauseButton')
 const nextbutton  = document.getElementById('prevButton');
 const prevbutton  = document.getElementById('nextButton');
-const playlistbutton  = document.getElementById('playlistSelect');
+const playlistbutton  = document.getElementById('playlistButton');
+const playlistdropdown= document.getElementById("playlistDropdown");
 
 function addListeners(oReq) {
   oReq.addEventListener('load', function () {
@@ -34,15 +35,19 @@ function updatePlaypauseButton (nextPlayState) {
 }
 
 function processRequest(button, e) {
-    console.log('processing request: ' + button);
+    // console.log('processing request: ' + button);
+    var pulldownText = playlistdropdown.options[playlistdropdown.selectedIndex].text;
     var oReq = new XMLHttpRequest();
     addListeners(oReq);
     if ( button.match('SelectPlaylist')) {
       oReq.open("POST", "/" + button);
+      oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      console.log('client.js: pulldown is: ', encodeURIComponent(pulldownText));
+      oReq.send('playlist=' + encodeURIComponent(pulldownText) );
     } else {
       oReq.open("GET", "/" + button);
+      oReq.send();
     }
-    oReq.send();
 }
 
 var intervalID = setInterval( function() {processRequest('status');}, 5000);

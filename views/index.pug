@@ -30,7 +30,7 @@ block content
       p #{artist}<br>#{song}
     style.
       input[type=text], select {
-      width: 70%;
+      width: 300px;
       padding: 12px 20px;
       margin: 8px 0;
       display: inline-block;
@@ -38,31 +38,16 @@ block content
       border-radius: 4px;
       box-sizing: border-box;
       }
-      input[type=submit] {
-      width: 30%;
-      background-color: #4CAF50;
-      color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      }
-      input[type=submit]:hover {
-      background-color: #45a049;
-      }
       div {
       border-radius: 5px;
       background-color: #f2f2f2;
       padding: 20px;
       }
     div
-      form(action='/SelectPlaylist' method="post")
-          //label(for='playlistOpt') Skills 
-          select(name='dropDown', id='playlistSelect')
-              each playlist in Playlists
-                  option=playlist
-              input(type='submit', value='Submit')
+      select(name='dropDown', id='playlistDropdown')
+        each playlist in Playlists
+          option=playlist
+      button(type='button' class='selectPlaylist btn btn-dark' id='playlistButton' style="width: 30%") PlayIt
   script(src='javascripts/client.js')
 
   

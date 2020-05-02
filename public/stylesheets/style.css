@@ -8,7 +8,7 @@
   margin-right: 2px;
 }
 
-.next, .prev, .Play, .Pause {
+.next, .prev, .Play, .Pause, .selectPlaylist {
   position: absolute;
 }
 
@@ -36,4 +36,9 @@
 .alert {
   top: 40px;
   left: 4px;
+}
+
+.selectPlaylist {
+  top: 170px;
+  left: 340px;
 }

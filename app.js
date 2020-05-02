@@ -83,8 +83,8 @@ app.get('/playpause', function (req, res) {
 })
 
 app.post('/SelectPlaylist', function (req, res) {
-  console.log(req.body.dropDown);
-  var playlist = global.iTunes.PlayPlaylist(req.body.dropDown);
+  console.log('pulldown is: ', req.body.playlist);
+  var playlist = global.iTunes.PlayPlaylist(req.body.playlist);
   updateTrackInfo(res);
 })
 
