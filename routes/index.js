@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
       artist: track.artist, 
       state: iTunesState, 
       playpausetext: playpausetext,
-      Playlists: ["iTunes DJ","3stars+"]
+      Playlists: global.iTunes.getPlaylists()
     });
 });
 
