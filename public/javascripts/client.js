@@ -38,6 +38,7 @@ function processRequest(button, e) {
     // console.log('processing request: ' + button);
     var pulldownText = playlistdropdown.options[playlistdropdown.selectedIndex].text;
     var oReq = new XMLHttpRequest();
+    oReq.timeout = 2000;
     addListeners(oReq);
     if ( button.match('SelectPlaylist')) {
       oReq.open("POST", "/" + button);
